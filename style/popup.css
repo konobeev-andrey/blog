@@ -1,0 +1,36 @@
+.popup_block{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 16px;
+    padding:0 36px;
+    width:100%;
+    min-height:100%;
+    overflow:hidden;
+    position:fixed;
+    background: rgba(36, 50, 79, 0.3);
+}
+.popup_block_window{
+    border-radius: var(--radius);
+    border-bottom: 8px solid #457ABF;
+    grid-column: 4/-4;
+    background: #FFFFFF;
+    max-height: 400px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+.input_body_post_add{
+    height: 100%;
+}
+.input_title_add{
+    height: 56px;
+}
+.input_body_post_add{
+    height: 246px;
+    margin: 0  0 24px 0;
+    resize: none
+}
+.popup_block_window_button{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}

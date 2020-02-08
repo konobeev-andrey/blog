@@ -1,0 +1,28 @@
+main{
+    grid-column: var(--content-position);
+}
+
+.post {
+    padding: 26px 22px;
+    background: #fff;
+    border-radius: var(--radius);
+    color: var(--color-blue-deep);
+    border-bottom: 8px solid var(--color-blue-05);
+    margin-bottom: 46px;
+}
+
+.post:hover{
+    transition: all ease-in 0.2s;
+    border-bottom: 8px solid var(--color-blue);
+}
+
+.post .post__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.post .post__subtitle {
+    font-size: 18px;
+    font-weight: 300;
+}

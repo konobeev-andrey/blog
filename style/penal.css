@@ -1,0 +1,23 @@
+.penal{
+    height: 84px;
+    background: #fff;
+    grid-column: var(--content-position);
+    margin-bottom: 46px;
+    border-radius: var(--radius);
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    align-items: center;
+}
+
+.penal > .panel-search__block{
+    height: 100%;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    align-items: center;
+    border-right: 1px solid var(--color-border);
+}
+
+.penal > .panel-add-post__block {
+    padding: 0 24px;
+}

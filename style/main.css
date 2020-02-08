@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,700&display=swap');
+@import url('layout.css');
+@import url('penal.css');
+@import url('posts.css');
+@import url('components.css');
+@import url('popup.css');
+
+:root {
+    --color-green: #1CA68A;
+    --color-blue: #457ABF;
+    --color-blue-05: rgba(69, 122, 191, 0.5);
+    --color-blue: #457ABF;
+    --color-blue-deep: #24324F;
+    --color-red: #FF3E4C;
+    --color-border: rgba(36,50,79, 0.15);
+    --color-background: #f6f6f6;
+    --content-position: 3/-3;
+    --radius: 6px; 
+    --position-popup: 4/-4 ; 
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body{
+    min-width: 360px;
+    background: var(--color-background);
+}
+
+
+
+header{
+    height: 146px;
+    font-weight: 300;
+    font-size: 36px;
+    grid-column: 1 / -1;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}       
+
+
