@@ -21,3 +21,6 @@
 .penal > .panel-add-post__block {
     padding: 0 24px;
 }
+.panel-search__block_input{
+    border-bottom: none;
+}

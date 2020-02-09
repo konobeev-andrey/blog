@@ -1,36 +1,41 @@
-.popup_block{
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: 16px;
-    padding:0 36px;
-    width:100%;
-    min-height:100%;
-    overflow:hidden;
-    position:fixed;
+.popup{
+    position: fixed;
+    top: 0;
+    height: 100%;
     background: rgba(36, 50, 79, 0.3);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
 }
-.popup_block_window{
+
+
+.popup__wrapper {
+    background: #fff;
+    grid-column: 4/-4;
     border-radius: var(--radius);
     border-bottom: 8px solid #457ABF;
-    grid-column: 4/-4;
-    background: #FFFFFF;
-    max-height: 400px;
     display: grid;
-    align-items: center;
-    justify-items: center;
 }
-.input_body_post_add{
-    height: 100%;
-}
-.input_title_add{
-    height: 56px;
-}
-.input_body_post_add{
+
+.popup__wrapper > .inputs__wrapper > .textarea{
+    padding-top: 13px;
     height: 246px;
-    margin: 0  0 24px 0;
-    resize: none
+    resize: none;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;  
 }
-.popup_block_window_button{
+.popup__wrapper > .inputs__wrapper > .title{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    color: var( --color-blue-deep);
+    
+}
+.popup__wrapper > .button__wrapper{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 140px);
+    column-gap: 24px;
+    padding: 24px;
+    justify-self: right;
 }

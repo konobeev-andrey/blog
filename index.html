@@ -8,22 +8,6 @@
 </head>
 <body>
 
-    <div class="popup_block">
-        <div class="popup_block_window">
-           <div class="popup_block_window_inputs">
-               <input type="text" class="input_title_add input" placeholder="Заголовок">
-               <textarea rows="10" cols="45" name="text" class="input_body_post_add input" placeholder="Статья..."></textarea>
-           </div>
-           <div class="popup_block_window_button">
-               <button class="btn btn-delete">
-                   Отмена
-               </button>
-               <button class="btn btn-send">
-                  Добавить
-              </button>
-           </div>
-        </div>
-    </div>
 
 <div class="wrapper layout">
     <header>
@@ -37,7 +21,7 @@
              </button>
          </div>
          <div class="panel-add-post__block">
-             <button class="btn btn-send">
+             <button class="btn btn-send write-post">
                  Добавить статью
              </button>
          </div>
@@ -63,5 +47,25 @@
     
 </div>
 
+<div class="popup layout">
+    <div class="popup__wrapper">
+       <div class="inputs__wrapper">
+           <input type="text" class="title input" placeholder="Заголовок">
+           <textarea rows="10" cols="45" name="text" class="textarea input" placeholder="Статья..."></textarea>
+       </div>
+       <div class="button__wrapper">
+           <button class="btn btn-delete close-popup">
+               Отмена
+           </button>
+           <button class="btn btn-send">
+              Добавить
+          </button>
+       </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/posts.js"></script>
+<script src="js/popup.js"></script>
 </body>
 </html>
