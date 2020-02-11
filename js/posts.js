@@ -1,40 +1,12 @@
-// const users =  xhr.open('GET', 'https://reqres.in/api/users', false);
-// xhr.send();
+const main = $('main');
 
-// console.log(users)
+xhr.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
+xhr.responseType = 'json';
 
-const post = $('.post');
-const title = $('.post__title');
-const subtitle = $('.post__title');
-
-
-xhr.open("GET", "https://reqres.in/api/users", true);
-xhr.onload = function(){
-
-    console.log(xhr.response);
-
-
-    [{
-        sdfs
-    }]
-
-    for ( i in use) {
-        
-
-const     `<div class="post">
-        <h2 class="post__title">
-            ${}
-        </h2>
-        <p class="post__subtitle">
-           ${}
-        </p>
-    </div>`
-    }
-
-    post.
-};
 xhr.send();
-
+xhr.onload = function(){
+    displayPosts(xhr.response);
+};
 
 
 

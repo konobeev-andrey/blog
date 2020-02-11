@@ -1,0 +1,1 @@
+xhr.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
