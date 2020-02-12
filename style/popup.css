@@ -11,7 +11,7 @@
 
 .popup__wrapper {
     background: #fff;
-    grid-column: 4/-4;
+    grid-column: var(--position-popup);
     border-radius: var(--radius);
     border-bottom: 8px solid #457ABF;
     display: grid;

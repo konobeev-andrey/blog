@@ -13,13 +13,18 @@
         padding:0 24px;
         grid-template-columns: repeat(8, 1fr);
     }
+    .popup__wrapper {
+        --position-popup: 2/-2;
+    }
 }
 
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 540px) {
     .layout {
-        /*  */
         padding:0 16px;
         grid-template-columns: repeat(4, 1fr);
+    }
+    .popup__wrapper {
+        --position-popup: 1/-1;
     }
 }
