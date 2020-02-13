@@ -39,3 +39,7 @@
     padding: 24px;
     justify-self: right;
 }
+.message{
+    color: red;
+    text-align: center;
+}

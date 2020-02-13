@@ -10,31 +10,47 @@ function deleteValueInputs() {
      $('.title').value = '';
      $('.textarea').value = '';
 }
-function sendMessage (mes){
-    message.innerHTML = mes;
-}
+
 
 const popup = {
     open: function () {
         $('.popup.layout').style.display = 'grid';
+        $('.title.input').focus();
     },
     close: function () {
         $('.popup.layout').style.display = 'none';
+        display.message('');
     }
 }
-
-function displayPosts(resp) {
-    resp.forEach((element) => {
-        main.insertAdjacentHTML('beforeend', `<div class="post">
-        <h2 class="post__title">
-            ${element.title}
-        </h2>
-        <p class="post__subtitle">
-            ${element.body}
-        </p>
-    </div>`);
-    });
+const display = {
+    posts: function (resp) {
+        resp.forEach((element) => {
+            main.insertAdjacentHTML('beforeend', `<div class="post">
+            <h2 class="post__title">
+                ${element.title}
+            </h2>
+            <p class="post__subtitle">
+                ${element.body}
+            </p>
+        </div>`);
+        });
+    },
+    post: function (title, body){
+        main.insertAdjacentHTML('afterbegin', `<div class="post">
+            <h2 class="post__title">
+                ${title}
+            </h2>
+            <p class="post__subtitle">
+                ${body}
+            </p>
+        </div>`);
+    },
+    message: function (mes){
+        message.innerHTML = mes;
+    }
+    
 }
+
 
 const api = {
     getData: function (url, func) {
@@ -55,26 +71,29 @@ const api = {
         }
 
         xhr.onload = function () {
-            console.log('пост добавлен'); 
-            deleteValueInputs();  
+            deleteValueInputs();
+            display.post(title, body);
     };
-    xhr.send(JSON.stringify(obj));
+        xhr.send(JSON.stringify(obj));
     }
 }
+
  $('.send-post').onclick = function(title, bode) {
     let valueTitle = $('.title').value;
     let valueBody = $('.textarea').value;
     if(!valueTitle && !valueBody){
-        sendMessage('Введите название и статью!');
+        display.message('Введите название и статью!');
     }
     else if(!valueTitle){
-        sendMessage('Введите название!');
+        display.message('Введите название!');
     }
     else if(!valueBody){
-        sendMessage('Введите статью!');
+        display.message('Введите статью!');
     }
     else{
         api.sendData('https://jsonplaceholder.typicode.com/posts', 101, valueTitle, valueBody);
+        display.message('');
+        popup.close();
     }
  } 
 
