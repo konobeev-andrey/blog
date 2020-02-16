@@ -63,3 +63,7 @@
 {
     color:rgba(36, 50, 79, 0.5);
 }
+
+.hide{
+    display: none;
+}

@@ -26,3 +26,16 @@ main{
     font-size: 18px;
     font-weight: 300;
 }
+
+
+.postsFound{
+    padding: 26px 22px;
+    border-radius: var(--radius);
+    color: var(--color-blue-deep);
+    text-align: center;
+    margin-bottom: 46px;
+}
+
+.preloader__contener > p {
+    text-align: center;
+}
