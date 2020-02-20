@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<div class="wrapper layout">
+    <header>
+        <p>Мой первый блог</p>
+    </header>
+    <main class="fullPost">
+        <div class="breadcrumb">
+            <a href="index.html">Главная страница</a> ⤑ Статья
+        </div>
+       <div class="post">
+        <h1 class="post__title"></h1>
+        <p class="post__body"></p>
+       </div>
+       <div class="comment__wrapper">
+           <p>Комментарии</p>
+           <div class="comment">
+               <!-- comment -->
+           </div>
+            <form class="formComment" action="">
+                <p>Добавить комментарий</p>
+                <input type="text" name="name" class="input" placeholder="Введите свое имя">
+                <input type="text" name="Email" class="input" placeholder="Введите свой Email">
+                <textarea name="body" class="input textarea" id="" cols="30" rows="10" placeholder="Введите комментарий"></textarea>
+                <button class="btn btn-send send-post">
+                    Добавить
+                </button>
+            </form>
+       </div>
+       
+    </main>
+
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/comment.js"></script>
+<script>
+
+    function get(variable) {
+        return (new URL(document.location.href)).searchParams.get(variable);
+    }
+
+    $('.post__title').innerText = get('title');
+    $('.post__body').innerText = get('body');
+
+    //
+    // function cleanPath() {
+    //     let page = 'post.html';
+    //     let link = document.location.href;
+    //     let index = link.match(page).index;
+    //     return document.location.pathname = link.slice(0, index) + page
+    // }
+    //
+    // cleanPath();
+
+</script>
+</body>
+</html>

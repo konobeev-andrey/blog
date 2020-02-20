@@ -1,8 +1,10 @@
-main{
+main {
     grid-column: var(--content-position);
 }
 
 .post {
+    display: block;
+    text-decoration: none;
     padding: 26px 22px;
     background: #fff;
     border-radius: var(--radius);
@@ -11,7 +13,7 @@ main{
     margin-bottom: 46px;
 }
 
-.post:hover{
+.post:hover {
     transition: all ease-in 0.2s;
     border-bottom: 8px solid var(--color-blue);
 }
@@ -22,13 +24,14 @@ main{
     margin-bottom: 20px;
 }
 
+
 .post .post__subtitle {
     font-size: 18px;
     font-weight: 300;
 }
 
 
-.postsFound{
+.postsFound {
     padding: 26px 22px;
     border-radius: var(--radius);
     color: var(--color-blue-deep);
@@ -38,4 +41,10 @@ main{
 
 .preloader__contener > p {
     text-align: center;
+}
+
+
+.post__page {
+    background: #fff;
+    height: 100vh;
 }

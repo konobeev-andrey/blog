@@ -8,11 +8,11 @@ function $(selector) {
 
 function returnLastItem(arr) {
     return arr[arr.length - 1];
-  }
+}
 
 function deleteValueInputs() {
-     $('.title').value = '';
-     $('.textarea').value = '';
+    $('.title').value = '';
+    $('.textarea').value = '';
 }
 
 
@@ -25,36 +25,48 @@ const popup = {
         $('.popup.layout').style.display = 'none';
         display.message('');
     }
+};
+function viewPreloader(location) {
+    location.insertAdjacentHTML('afterbegin', ` <div class="preloader__contener">
+        <p><img src="5.svg" alt=""></p>
+        </div>`);
 }
+
+function viewPost(id, title, body, stack) {
+    main.insertAdjacentHTML(stack, `<a href="post.html?post=${id}&title=${title}&body=${body}" class="post" id="idPost${id}">
+            <h2 class="post__title">${title}</h2>
+            <p class="post__subtitle">${body}</p>
+        </a>`);
+}
+function viewComment(email, name, body, stack) {
+    $('.comment').insertAdjacentHTML(stack, `<div class="com">
+        <p class="name">${name}  <span>${email}</span></p>
+        <p class="bodyComment">${body}</p>
+    </div>`);
+}
+
+
 const display = {
     posts: function (resp) {
         resp.forEach((element) => {
-            main.insertAdjacentHTML('beforeend', `<div class="post" id="idPost${element.id}"> 
-            <h2 class="post__title">
-                ${element.title}
-            </h2>
-            <p class="post__subtitle">
-                ${element.body}
-            </p>
-        </div>`);
+            viewPost(element.id, element.title, element.body, 'beforeend');
         });
-        $('.preloader__contener').classList.add('hide');
+        $('.preloader__contener').remove();
     },
-    post: function (id, title, body){
-        main.insertAdjacentHTML('afterbegin', `<div class="post" id="idPost${id}">
-            <h2 class="post__title">
-                ${title}
-            </h2>
-            <p class="post__subtitle">
-                ${body}
-            </p>
-        </div>`);
+    post: function (id, title, body) {
+        viewPost(id, title, body, 'afterbegin');
     },
-    message: function (mes){
+    comments: function(resp) {
+        resp.forEach((element) => {
+            viewComment(element.email, element.name, element.body, 'beforeend');
+        });
+        $('.preloader__contener').remove();
+    },
+    message: function (mes) {
         message.innerHTML = mes;
     }
-    
-}
+
+};
 
 
 const api = {
@@ -67,38 +79,35 @@ const api = {
             func(xhr.response);
         };
     },
-    sendData: function(url, userId, id, title, body){
+    sendData: function (url, userId, id, title, body) {
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         let obj = {
             id: id,
             userId: userId,
             title: title,
-            body:body,
+            body: body,
         }
 
         xhr.onload = function () {
             deleteValueInputs();
-            display.post( id, title, body);
-    };
+            display.post(id, title, body);
+        };
         xhr.send(JSON.stringify(obj));
     }
 }
 
- $('.send-post').onclick = function(title, bode) {
+$('.send-post').onclick = function (title, bode) {
     let valueTitle = $('.title').value;
     let valueBody = $('.textarea').value;
     let valueId = returnLastItem(respArreyPosts).id + 1;
-    if(!valueTitle && !valueBody){
+    if (!valueTitle && !valueBody) {
         display.message('Введите название и статью!');
-    }
-    else if(!valueTitle){
+    } else if (!valueTitle) {
         display.message('Введите название!');
-    }
-    else if(!valueBody){
+    } else if (!valueBody) {
         display.message('Введите статью!');
-    }
-    else{
+    } else {
         api.sendData('https://jsonplaceholder.typicode.com/posts', 123, valueId, valueTitle, valueBody);
         respArreyPosts.push({
             userId: 123,
@@ -110,5 +119,5 @@ const api = {
         display.message('');
         popup.close();
     }
- } 
+}
 

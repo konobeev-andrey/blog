@@ -3,16 +3,18 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: 16px;
-    padding:0 36px;
+    padding: 0 36px;
 }
 
 
 @media screen and (max-width: 900px) {
     .layout {
         --content-position: 1/-1;
-        padding:0 24px;
+        --popup-position: 1/-1;
+        padding: 0 24px;
         grid-template-columns: repeat(8, 1fr);
     }
+
     .popup__wrapper {
         --position-popup: 2/-2;
     }
@@ -21,9 +23,10 @@
 
 @media screen and (max-width: 540px) {
     .layout {
-        padding:0 16px;
+        padding: 0 16px;
         grid-template-columns: repeat(4, 1fr);
     }
+
     .popup__wrapper {
         --position-popup: 1/-1;
     }

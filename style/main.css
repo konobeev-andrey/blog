@@ -12,14 +12,14 @@
     --color-blue: #457ABF;
     --color-blue-deep: #24324F;
     --color-red: #FF3E4C;
-    --color-border: rgba(36,50,79, 0.15);
+    --color-border: rgba(36, 50, 79, 0.15);
     --color-background: #f6f6f6;
     --content-position: 3/-3;
-    --radius: 6px; 
-    --position-popup: 4/-4 ; 
+    --popup-position: 4/-4;
+    --radius: 6px;
 }
 
-*{
+* {
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -27,14 +27,18 @@
     outline: none;
 }
 
-body{
+*::selection {
+    color: var(--color-background);
+    background: var(--color-blue-deep);
+}
+
+body {
     min-width: 360px;
     background: var(--color-background);
 }
 
 
-
-header{
+header {
     height: 146px;
     font-weight: 300;
     font-size: 36px;
@@ -45,3 +49,60 @@ header{
 }       
 
 
+.preloader__contener{
+    padding: 50px;
+}
+
+/* post.html */
+.breadcrumb{
+    margin: 24px 0 0 24px;
+    color: var(--color-blue-deep);
+}
+.breadcrumb > a{
+    text-decoration: none;
+    color: var(--color-blue-05);
+}
+.breadcrumb > a:hover{
+    color: var(--color-blue-deep);
+}
+.comment__wrapper > p{
+    color: var(--color-blue-deep);
+    margin:  24px 0 0 24px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.fullPost{
+    background: #fff;
+}
+.fullPost > .post{
+    border-bottom: none;
+    margin-bottom: 46px;
+}
+.formComment > p{
+    color: var(--color-blue-deep);
+    margin:  24px 0 0 24px;
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 24px;
+}
+.formComment > .textarea{
+    padding-top: 13px;
+    height: 150px;
+    resize: none;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+}
+.com{
+    padding: 24px 0;
+}
+.com > .name{
+    padding-bottom: 16px;
+}
+.com > .name > span{
+    color: rgba(69, 122, 191, 0.3);
+}
+.comment{
+    padding: 0 24px;
+}
