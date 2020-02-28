@@ -24,12 +24,15 @@
            <div class="comment">
                <!-- comment -->
            </div>
-            <form class="formComment" action="">
+            <form class="formComment" >
                 <p>Добавить комментарий</p>
-                <input type="text" name="name" class="input" placeholder="Введите свое имя">
-                <input type="text" name="Email" class="input" placeholder="Введите свой Email">
-                <textarea name="body" class="input textarea" id="" cols="30" rows="10" placeholder="Введите комментарий"></textarea>
-                <button class="btn btn-send send-post">
+                <div class="message">
+                    <!--Messegs...-->
+                </div>
+                <input type="text" name="name" class="input" id="nameInComment" placeholder="Введите свое имя">
+                <input type="Email" name="Email" class="input" id="emailInComment" placeholder="Введите свой Email">
+                <textarea name="body" class="input textarea" id="bodyInComment" cols="30" rows="10" placeholder="Введите комментарий"></textarea>
+                <button type="button"class="btn btn-send send-post" id="addComment">
                     Добавить
                 </button>
             </form>
@@ -43,12 +46,12 @@
 <script src="js/comment.js"></script>
 <script>
 
-    function get(variable) {
-        return (new URL(document.location.href)).searchParams.get(variable);
-    }
+    // function get(variable) {
+    //     return (new URL(document.location.href)).searchParams.get(variable);
+    // }
 
-    $('.post__title').innerText = get('title');
-    $('.post__body').innerText = get('body');
+    // $('.post__title').innerText = get('title');
+    // $('.post__body').innerText = get('body');
 
     //
     // function cleanPath() {

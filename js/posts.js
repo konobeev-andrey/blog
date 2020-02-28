@@ -1,5 +1,5 @@
 const main = $('main');
-viewPreloader(main);
+view.preloader(main);
 
 api.getData('https://jsonplaceholder.typicode.com/posts', display.posts);
 
@@ -29,9 +29,9 @@ function searchPosts() {
         });
     }
     if (!postsFound && val !== '') {
-        $('.postsFound').classList.remove('hide');
+        if(!$('#postsFound')) view.postsFound(main);
     } else {
-        $('.postsFound').classList.add('hide');
+        if($('#postsFound')) $('#postsFound').remove();
     }
 }
 
