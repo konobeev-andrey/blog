@@ -27,6 +27,13 @@ $('#addComment').onclick = function () {
             email: valueEmail,
             body: valueBody
         });
+        addInlocalStorage({
+            postId: idPost,
+            id: valueId,
+            name: valueName,
+            email: valueEmail,
+            body: valueBody
+        },'comments');
         display.message('');
     }
 }

@@ -1,4 +1,3 @@
-const main = $('main');
 view.preloader(main);
 
 api.getData('https://jsonplaceholder.typicode.com/posts', display.posts);

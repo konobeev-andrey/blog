@@ -1,45 +1,72 @@
-.popup{
+.popup {
     position: fixed;
     top: 0;
-    height: 100%;
+    bottom: 0;
+    right: 0;
+    left: 0;
     background: rgba(36, 50, 79, 0.3);
     backdrop-filter: blur(10px);
     display: none;
     align-items: center;
+    animation: from-opacity linear 300ms;
 }
-
 
 .popup__wrapper {
     background: #fff;
-    grid-column: var(--position-popup);
+    grid-column: var( --content-position);
     border-radius: var(--radius);
     border-bottom: 8px solid #457ABF;
     display: grid;
 }
 
-.popup__wrapper > .inputs__wrapper > .textarea{
+.popup__wrapper>.inputs__wrapper>.textarea {
     padding-top: 13px;
     height: 246px;
     resize: none;
     font-weight: 300;
     font-size: 18px;
-    line-height: 150%;  
+    line-height: 150%;
 }
-.popup__wrapper > .inputs__wrapper > .title{
+
+.popup__wrapper>.inputs__wrapper>.title {
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
     color: var( --color-blue-deep);
-    
 }
-.popup__wrapper > .button__wrapper{
+
+.popup__wrapper>.button__wrapper {
     display: grid;
     grid-template-columns: repeat(2, 140px);
     column-gap: 24px;
     padding: 24px;
     justify-self: right;
 }
-.message{
-    color: red;
+
+.message {
+    display: none;
+    position: absolute;
+    left: 50%;
+    color: var(--color-red);
+    transform: translateX(-50%);
     text-align: center;
+    background: #fff;
+    padding: 18px 15px;
+    box-shadow: 0 0 20px var(--color-border);
+    border-radius: var(--radius);
+    margin: 10px;
+    overflow: hidden;
+    animation: appear-hint linear 300ms;
+}
+
+.message::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 6px;
+    background: var(--color-border);
+    animation: timing linear 2s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

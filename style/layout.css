@@ -10,13 +10,8 @@
 @media screen and (max-width: 940px) {
     .layout {
         --content-position: 1/-1;
-        --popup-position: 1/-1;
         padding: 0 24px;
         grid-template-columns: repeat(8, 1fr);
-    }
-
-    .popup__wrapper {
-        --position-popup: 2/-2;
     }
 }
 
@@ -25,9 +20,5 @@
     .layout {
         padding: 0 16px;
         grid-template-columns: repeat(4, 1fr);
-    }
-
-    .popup__wrapper {
-        --position-popup: 1/-1;
     }
 }

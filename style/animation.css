@@ -1,0 +1,28 @@
+@keyframes timing {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes appear-hint {
+    from {
+        transform: rotateX(90deg) translateX(-50%);
+        opacity: 0;
+    }
+    to {
+        transform: rotateX(0deg) translateX(-50%);
+        opacity: 1;
+    }
+}
+
+@keyframes from-opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

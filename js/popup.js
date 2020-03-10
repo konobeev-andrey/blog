@@ -29,6 +29,12 @@ $('#addPost').onclick = function (title, bode) {
             body: valueBody
         });
         display.message('');
+        addInlocalStorage({
+            userId: 123,
+            id: valueId,
+            title: valueTitle,
+            body: valueBody
+        }, 'posts');
         popup.close();
     }
 }

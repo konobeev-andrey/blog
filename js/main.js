@@ -1,20 +1,26 @@
 const xhr = new XMLHttpRequest();
-const message = $('.message');
 let respArreyPosts;
 let respArreyComment;
+const main = $('main');
 
 function $(selector) {
     return document.querySelector(selector)
 }
 
 function returnLastItem(arr) {
-    return arr[arr.length - 1];
+    if(arr.length !=  0){
+        return arr[arr.length - 1];
+    }
+    else{
+        return 0;
+    }
 }
 
 function deleteValuePopup() {
     $('.title').value = '';
     $('.textarea').value = '';
 }
+
 function deleteValueComment() {
     $('#nameInComment').value = '';
     $('#emailInComment').value = '';
@@ -23,37 +29,45 @@ function deleteValueComment() {
 
 
 const popup = {
-    open: function () {
+    open: function() {
         $('.popup.layout').style.display = 'grid';
         $('.title.input').focus();
     },
-    close: function () {
+    close: function() {
         $('.popup.layout').style.display = 'none';
         display.message('');
     }
 };
 
+const isOpne = {
+    open: function(el, display) {
+        $(el).style.display = display || 'block'
+    },
+    close: function(el) {
+        $(el).style.display = 'none'
+    }
+}
 
 const view = {
-    preloader:  function (location) {
+    preloader: function(location) {
         location.insertAdjacentHTML('afterbegin', ` <div class="preloader__contener">
             <p><img src="5.svg" alt=""></p>
             </div>`);
     },
-    postsFound: function (location) {
+    postsFound: function(location) {
         location.insertAdjacentHTML('afterbegin', `  <div class="postsFound" id="postsFound">
             <p class="post__subtitle">
                 Статей не найдено!
             </p>
         </div>`);
     },
-    post: function (id, title, body, stack) {
-        main.insertAdjacentHTML(stack, `<a href="post.html?post=${id}&title=${title}&body=${body}" class="post" id="idPost${id}">
+    post: function(id, title, body, stack) {
+        $('.posts').insertAdjacentHTML(stack, `<a href="post.html?post=${id}&title=${title}&body=${body}" class="post" id="idPost${id}">
                 <h2 class="post__title">${title}</h2>
                 <p class="post__subtitle">${body}</p>
             </a>`);
     },
-    comment: function (email, name, body, stack) {
+    comment: function(email, name, body, stack) {
         $('.comment').insertAdjacentHTML(stack, `<div class="com">
             <p class="name">${name}  <span>${email}</span></p>
             <p class="bodyComment">${body}</p>
@@ -63,14 +77,15 @@ const view = {
 
 
 const display = {
-    posts: function (resp) {
+    posts: function(resp) {
         respArreyPosts = resp;
         resp.forEach((element) => {
             view.post(element.id, element.title, element.body, 'beforeend');
         });
         $('.preloader__contener').remove();
+        displayLocalPosts();
     },
-    post: function (id, title, body) {
+    post: function(id, title, body) {
         view.post(id, title, body, 'afterbegin');
     },
     comments: function(resp) {
@@ -78,29 +93,35 @@ const display = {
         resp.forEach((element) => {
             view.comment(element.email, element.name, element.body, 'beforeend');
         });
+        displayLocalComments();
         $('.preloader__contener').remove();
     },
     comment: function(email, name, body) {
-            view.comment(email, name, body, 'beforeend');
+        view.comment(email, name, body, 'beforeend');
     },
-    message: function (mes) {
-        message.innerHTML = mes;
+    message: function(mess) {
+        if (mess) {
+            isOpne.open('.message');
+            $('.message').innerHTML = mess;
+            setTimeout(function() {
+                isOpne.close('.message');
+            }, 2300);
+        } else return false
     }
 
 };
 
 
 const api = {
-    getData: function (url, func) {
+    getData: function(url, func) {
         xhr.open("GET", url, true);
         xhr.responseType = 'json';
         xhr.send();
-        xhr.onload = function () {
-            // respArreyPosts = xhr.response;
+        xhr.onload = function() {
             func(xhr.response);
         };
     },
-    sendData: function (url, userId, id, title, body) {
+    sendData: function(url, userId, id, title, body) {
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         let obj = {
@@ -110,13 +131,13 @@ const api = {
             body: body,
         }
 
-        xhr.onload = function () {
+        xhr.onload = function() {
             deleteValuePopup();
             display.post(id, title, body);
         };
         xhr.send(JSON.stringify(obj));
     },
-    sendComment: function (url, idPost, valueId, valueName, valueEmail, valueBody) {
+    sendComment: function(url, idPost, valueId, valueName, valueEmail, valueBody) {
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         let obj = {
@@ -127,10 +148,42 @@ const api = {
             body: valueBody
         }
 
-        xhr.onload = function () {
+        xhr.onload = function() {
             deleteValueComment();
             display.comment(valueEmail, valueName, valueBody);
         };
         xhr.send(JSON.stringify(obj));
+    }
+}
+
+
+function addInlocalStorage (postAdd, location){
+    if (localStorage.getItem(location) === null) {
+        localStorage.setItem(location ,JSON.stringify([postAdd]));
+    }
+    else{
+        let localPosts = JSON.parse(localStorage.getItem(location));
+        localPosts.push(postAdd);
+        localStorage.setItem(location,JSON.stringify(localPosts));
+    }
+}
+function displayLocalPosts(){
+    if (localStorage.getItem('posts') !== null) {
+        let localPosts = JSON.parse(localStorage.getItem('posts'));
+        for(post of localPosts){
+            view.post(post.id, post.title, post.body, 'afterbegin');
+            respArreyPosts.push(post);
+        }
+    }
+}
+function displayLocalComments(){
+    if (localStorage.getItem('comments') !== null) {
+        let localComments = JSON.parse(localStorage.getItem('comments'));
+        for(comment of localComments){
+            if(comment.postId == idPost){
+                view.comment(comment.email, comment.name, comment.body, 'beforeend');
+                respArreyComment.push(comment);
+            }
+        }
     }
 }

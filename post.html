@@ -13,33 +13,33 @@
     </header>
     <main class="fullPost">
         <div class="breadcrumb">
-            <a href="index.html">Главная страница</a> ⤑ Статья
+            <a href="index.html">Главная страница</a>  Статья
         </div>
        <div class="post">
         <h1 class="post__title"></h1>
         <p class="post__body"></p>
        </div>
        <div class="comment__wrapper">
-           <p>Комментарии</p>
-           <div class="comment">
-               <!-- comment -->
-           </div>
-            <form class="formComment" >
-                <p>Добавить комментарий</p>
-                <div class="message">
+            <form class="formComment">
+                <p class="comments-header">Добавить комментарий</p>
+                <div class="message" data-error>
                     <!--Messegs...-->
                 </div>
                 <input type="text" name="name" class="input" id="nameInComment" placeholder="Введите свое имя">
                 <input type="Email" name="Email" class="input" id="emailInComment" placeholder="Введите свой Email">
                 <textarea name="body" class="input textarea" id="bodyInComment" cols="30" rows="10" placeholder="Введите комментарий"></textarea>
+               <div class="btn-container">
                 <button type="button"class="btn btn-send send-post" id="addComment">
                     Добавить
                 </button>
+               </div>
             </form>
+            <p class="comments-header">Комментарии</p>
+            <div class="comment">
+                <!-- comment -->
+            </div>
        </div>
-       
     </main>
-
 </div>
 
 <script src="js/main.js"></script>
