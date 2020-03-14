@@ -11,16 +11,11 @@ window.onclick = function (e) {
 $('#addPost').onclick = function (title, bode) {
     let valueTitle = $('.title').value;
     let valueBody = $('.textarea').value;
-    let valueId = returnLastItem(respArreyPosts).id + 1;
-    if(!valueTitle || !valueBody) addMessagePopup( valueTitle, valueBody);
-    // if (!valueTitle && !valueBody) {
-    //     display.message('Введите название и статью!');
-    // } else if (!valueTitle) {
-    //     display.message('Введите название!');
-    // } else if (!valueBody) {
-    //     display.message('Введите статью!');
-    // } 
-     else {
+    let valueId = returnLastIndex(respArreyPosts) + 1;
+    if(!valueTitle || !valueBody) {
+        addMessagePopup( valueTitle, valueBody);
+    }
+    else {
         api.sendData('https://jsonplaceholder.typicode.com/posts', 123, valueId, valueTitle, valueBody);
         respArreyPosts.push({
             userId: 123,
@@ -29,7 +24,7 @@ $('#addPost').onclick = function (title, bode) {
             body: valueBody
         });
         display.message('');
-        addInlocalStorage({
+        local.add({
             userId: 123,
             id: valueId,
             title: valueTitle,

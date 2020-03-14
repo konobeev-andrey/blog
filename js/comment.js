@@ -14,7 +14,7 @@ $('#addComment').onclick = function () {
     let valueName = $('#nameInComment').value;
     let valueEmail = $('#emailInComment').value;
     let valueBody = $('#bodyInComment').value;
-    let valueId = +returnLastItem(respArreyComment).id + 1;
+    let valueId = +returnLastIndex(respArreyComment) + 1;
     if(!valueName || !valueBody || !valueEmail){
         addMessageComment(valueName, valueBody, valueEmail);
     }
@@ -27,7 +27,7 @@ $('#addComment').onclick = function () {
             email: valueEmail,
             body: valueBody
         });
-        addInlocalStorage({
+        local.add({
             postId: idPost,
             id: valueId,
             name: valueName,

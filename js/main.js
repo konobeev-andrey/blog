@@ -7,9 +7,9 @@ function $(selector) {
     return document.querySelector(selector)
 }
 
-function returnLastItem(arr) {
+function returnLastIndex(arr) {
     if(arr.length !=  0){
-        return arr[arr.length - 1];
+        return arr[arr.length - 1].id;
     }
     else{
         return 0;
@@ -39,7 +39,7 @@ const popup = {
     }
 };
 
-const isOpne = {
+const isOpen = {
     open: function(el, display) {
         $(el).style.display = display || 'block'
     },
@@ -83,7 +83,7 @@ const display = {
             view.post(element.id, element.title, element.body, 'beforeend');
         });
         $('.preloader__contener').remove();
-        displayLocalPosts();
+        local.displayPosts();
     },
     post: function(id, title, body) {
         view.post(id, title, body, 'afterbegin');
@@ -93,7 +93,7 @@ const display = {
         resp.forEach((element) => {
             view.comment(element.email, element.name, element.body, 'beforeend');
         });
-        displayLocalComments();
+        local.displayComments();
         $('.preloader__contener').remove();
     },
     comment: function(email, name, body) {
@@ -101,10 +101,12 @@ const display = {
     },
     message: function(mess) {
         if (mess) {
-            isOpne.open('.message');
+         isOpen
+        .open('.message');
             $('.message').innerHTML = mess;
             setTimeout(function() {
-                isOpne.close('.message');
+             isOpen
+            .close('.message');
             }, 2300);
         } else return false
     }
@@ -156,6 +158,39 @@ const api = {
     }
 }
 
+const local = {
+    add: function (postAdd, location){
+        if (localStorage.getItem(location) === null) {
+            localStorage.setItem(location ,JSON.stringify([postAdd]));
+        }
+        else{
+            let localPosts = JSON.parse(localStorage.getItem(location));
+            localPosts.push(postAdd);
+            localStorage.setItem(location,JSON.stringify(localPosts));
+        }
+    },
+    displayPosts: function (){
+        if (localStorage.getItem('posts') !== null) {
+            let localPosts = JSON.parse(localStorage.getItem('posts'));
+            for(post of localPosts){
+                view.post(post.id, post.title, post.body, 'afterbegin');
+                respArreyPosts.push(post);
+            }
+        }
+    },
+    displayComments: function (){
+        if (localStorage.getItem('comments') !== null) {
+            let localComments = JSON.parse(localStorage.getItem('comments'));
+            for(comment of localComments){
+                if(comment.postId == idPost){
+                    view.comment(comment.email, comment.name, comment.body, 'beforeend');
+                    respArreyComment.push(comment);
+                }
+            }
+        }
+    }
+
+}
 
 function addInlocalStorage (postAdd, location){
     if (localStorage.getItem(location) === null) {
