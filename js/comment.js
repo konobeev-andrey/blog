@@ -11,29 +11,29 @@ $('.post__body').innerText = get('body');
 api.getData(constant.url + `comments?postId=${idPost}`, display.comments);
 
 $('#addComment').onclick = function () {
-    let valueName = $('#nameInComment');
-    let valueEmail = $('#emailInComment');
-    let valueBody = $('#bodyInComment');
+    let valueName = $('#nameInComment').value;
+    let valueEmail = $('#emailInComment').value;
+    let valueBody = $('#bodyInComment').value;
     let valueId = +returnLastIndex(constant.respArreyComment) + 1;
-    let strMessage = noCorrentComment([valueName,valueEmail, valueBody]);
+    let strMessage = noCorrentComment([$('#nameInComment'),$('#emailInComment'), $('#bodyInComment')]);
     if(strMessage){
         display.message(strMessage);
         return
     }
-        api.sendComment(constant.url + 'comments?postId=${idPost}', idPost, valueId, valueName.value, valueEmail.value, valueBody.value);
+        api.sendComment(constant.url + 'comments?postId=${idPost}', idPost, valueId, valueName, valueEmail, valueBody);
         constant.respArreyComment.push({
             postId: idPost,
             id: valueId,
-            name: valueName.value,
-            email: valueEmail.value,
-            body: valueBody.value
+            name: valueName,
+            email: valueEmail,
+            body: valueBody
         });
         local.add({
             postId: idPost,
             id: valueId,
-            name: valueName.value,
-            email: valueEmail.value,
-            body: valueBody.value
+            name: valueName,
+            email: valueEmail,
+            body: valueBody
         },'comments');
     
 }
