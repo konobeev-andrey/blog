@@ -4,26 +4,26 @@ $('.close-popup').onclick = popup.close;
 window.onclick = function (e) {
     if (e.target === $('.popup')) {
         $('.popup').style.display = 'none';
-        display.message('');
     }
 };
 
 $('#addPost').onclick = function (title, bode) {
-    let valueTitle = $('.title').value;
-    let valueBody = $('.textarea').value;
-    let valueId = returnLastIndex(respArreyPosts) + 1;
+    let valueTitle = $('.title').value.trim();
+    let valueBody = $('.textarea').value.trim();
+    let valueId = returnLastIndex(constant.respArreyPosts) + 1;
     if(!valueTitle || !valueBody) {
         addMessagePopup( valueTitle, valueBody);
+        return
     }
-    else {
-        api.sendData('https://jsonplaceholder.typicode.com/posts', 123, valueId, valueTitle, valueBody);
-        respArreyPosts.push({
+    noCorrentComment([valueName,valueEmail, valueBody]);
+
+        api.sendData(constant.url + 'posts', 123, valueId, valueTitle, valueBody);
+        constant.respArreyPosts.push({
             userId: 123,
             id: valueId,
             title: valueTitle,
             body: valueBody
         });
-        display.message('');
         local.add({
             userId: 123,
             id: valueId,
@@ -32,20 +32,13 @@ $('#addPost').onclick = function (title, bode) {
         }, 'posts');
         popup.close();
     }
-}
 
 function addMessagePopup (valueTitle, valueBody){
-    let strMessage = 'Введите ';
+    let strMessage;
     let arreyMessage = [];
     if(!valueTitle) arreyMessage.push('название');
     if(!valueBody) arreyMessage.push('статью');
-
-    if(arreyMessage.length > 1){
-        strMessage += arreyMessage.join(' и ');
-     }
-     else{
-         strMessage += arreyMessage[0];
-     }
+    strMessage = 'Введите ' + arreyMessage.join(' и ');
     display.message(strMessage);
 
 }

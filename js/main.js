@@ -1,7 +1,22 @@
-const xhr = new XMLHttpRequest();
-let respArreyPosts;
-let respArreyComment;
-const main = $('main');
+const constant = {
+    url: "https://jsonplaceholder.typicode.com/",
+    xhr: new XMLHttpRequest(),
+    respArreyPosts: [],
+    respArreyComment: [],
+    main: $('main'),
+    regexpEmail: /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i,
+
+}
+const regexpCheck = [
+    {
+        name: "еmail",
+        regexpValue: /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i
+    },
+    {
+        name: "phone",
+        regexpValue: /^[0-9]/i
+    }
+];
 
 function $(selector) {
     return document.querySelector(selector)
@@ -78,7 +93,7 @@ const view = {
 
 const display = {
     posts: function(resp) {
-        respArreyPosts = resp;
+        constant.respArreyPosts = resp;
         resp.forEach((element) => {
             view.post(element.id, element.title, element.body, 'beforeend');
         });
@@ -89,7 +104,7 @@ const display = {
         view.post(id, title, body, 'afterbegin');
     },
     comments: function(resp) {
-        respArreyComment = resp;
+        constant.respArreyComment = resp;
         resp.forEach((element) => {
             view.comment(element.email, element.name, element.body, 'beforeend');
         });
@@ -116,16 +131,16 @@ const display = {
 
 const api = {
     getData: function(url, func) {
-        xhr.open("GET", url, true);
-        xhr.responseType = 'json';
-        xhr.send();
-        xhr.onload = function() {
-            func(xhr.response);
+        constant.xhr.open("GET", url, true);
+        constant.xhr.responseType = 'json';
+        constant.xhr.send();
+        constant.xhr.onload = function() {
+            func(constant.xhr.response);
         };
     },
     sendData: function(url, userId, id, title, body) {
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        constant.xhr.open("POST", url, true);
+        constant.xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         let obj = {
             id: id,
             userId: userId,
@@ -133,15 +148,15 @@ const api = {
             body: body,
         }
 
-        xhr.onload = function() {
+        constant.xhr.onload = function() {
             deleteValuePopup();
             display.post(id, title, body);
         };
-        xhr.send(JSON.stringify(obj));
+        constant.xhr.send(JSON.stringify(obj));
     },
     sendComment: function(url, idPost, valueId, valueName, valueEmail, valueBody) {
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        constant.xhr.open("POST", url, true);
+        constant.xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         let obj = {
             postId: idPost,
             id: valueId,
@@ -150,11 +165,11 @@ const api = {
             body: valueBody
         }
 
-        xhr.onload = function() {
+        constant.xhr.onload = function() {
             deleteValueComment();
             display.comment(valueEmail, valueName, valueBody);
         };
-        xhr.send(JSON.stringify(obj));
+        constant.xhr.send(JSON.stringify(obj));
     }
 }
 
@@ -174,7 +189,7 @@ const local = {
             let localPosts = JSON.parse(localStorage.getItem('posts'));
             for(post of localPosts){
                 view.post(post.id, post.title, post.body, 'afterbegin');
-                respArreyPosts.push(post);
+                constant.respArreyPosts.push(post);
             }
         }
     },
@@ -184,7 +199,7 @@ const local = {
             for(comment of localComments){
                 if(comment.postId == idPost){
                     view.comment(comment.email, comment.name, comment.body, 'beforeend');
-                    respArreyComment.push(comment);
+                    constant.respArreyComment.push(comment);
                 }
             }
         }
@@ -207,7 +222,7 @@ function displayLocalPosts(){
         let localPosts = JSON.parse(localStorage.getItem('posts'));
         for(post of localPosts){
             view.post(post.id, post.title, post.body, 'afterbegin');
-            respArreyPosts.push(post);
+            constant.respArreyPosts.push(post);
         }
     }
 }
@@ -217,7 +232,7 @@ function displayLocalComments(){
         for(comment of localComments){
             if(comment.postId == idPost){
                 view.comment(comment.email, comment.name, comment.body, 'beforeend');
-                respArreyComment.push(comment);
+                constant.respArreyComment.push(comment);
             }
         }
     }
