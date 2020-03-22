@@ -20,20 +20,20 @@ $('#addComment').onclick = function () {
         display.message(strMessage);
         return
     }
-        api.sendComment(constant.url + 'comments?postId=${idPost}', idPost, valueId, valueName, valueEmail, valueBody);
+        api.sendComment(constant.url + 'comments?postId=${idPost}', idPost, valueId, valueName.value, valueEmail.value, valueBody.value);
         constant.respArreyComment.push({
             postId: idPost,
             id: valueId,
-            name: valueName,
-            email: valueEmail,
-            body: valueBody
+            name: valueName.value,
+            email: valueEmail.value,
+            body: valueBody.value
         });
         local.add({
             postId: idPost,
             id: valueId,
-            name: valueName,
-            email: valueEmail,
-            body: valueBody
+            name: valueName.value,
+            email: valueEmail.value,
+            body: valueBody.value
         },'comments');
     
 }
