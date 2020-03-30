@@ -1,3 +1,4 @@
+
 main {
     grid-column: var(--content-position);
 }
@@ -47,4 +48,79 @@ main {
 .post__page {
     background: #fff;
     height: 100vh;
+}
+
+.breadcrumb {
+    margin: 24px 0 0 24px;
+    color: var(--color-blue-deep);
+}
+
+.breadcrumb>a {
+    text-decoration: none;
+    color: var(--color-blue-05);
+}
+
+.breadcrumb>a::after {
+    content: '>';
+}
+
+.breadcrumb>a:hover {
+    color: var(--color-blue-deep);
+}
+
+.comment__wrapper .comments-header {
+    background: var(--color-blue);
+    color: #fff;
+    font-size: 24px;
+    padding: 18px 20px;
+}
+
+.fullPost {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    grid-column: var(--content-position);
+}
+
+.fullPost>.post {
+    border-bottom: none;
+    margin-bottom: 46px;
+}
+
+.formComment>.textarea {
+    padding-top: 13px;
+    height: 150px;
+    resize: none;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 150%;
+}
+
+.formComment>.btn-container {
+    padding: 20px;
+}
+
+.formComment>.btn-container>button {
+    width: 300px;
+}
+
+.comment {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.comment:last-child {
+    border-bottom: 1px solid transparent;
+}
+
+.comment>.name {
+    padding-bottom: 16px;
+}
+
+.comment>.name>span {
+    color: rgba(69, 122, 191, 0.3);
+}
+
+.comments {
+    padding: 0 24px;
 }

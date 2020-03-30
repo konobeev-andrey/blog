@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,700&display=swap');
-@import url('layout.css');
 @import url('posts.css');
+@import url('layout.css');
 @import url('components.css');
 @import url('penal.css');
 @import url('popup.css');
 @import url('animation.css');
+
 :root {
     --color-green: #1CA68A;
     --color-blue: #457ABF;
@@ -25,6 +26,7 @@
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     outline: none;
+    box-sizing: padding-box;
 }
 
 *::selection {
@@ -49,81 +51,4 @@ header {
 
 .preloader__contener {
     padding: 50px;
-}
-
-
-/* post.html */
-
-.breadcrumb {
-    margin: 24px 0 0 24px;
-    color: var(--color-blue-deep);
-}
-
-.breadcrumb>a {
-    text-decoration: none;
-    color: var(--color-blue-05);
-}
-
-.breadcrumb>a::after {
-    content: '>';
-}
-
-.breadcrumb>a:hover {
-    color: var(--color-blue-deep);
-}
-
-.comment__wrapper .comments-header {
-    background: var(--color-blue);
-    color: #fff;
-    font-size: 24px;
-    padding: 18px 20px;
-}
-
-.fullPost {
-    background: #fff;
-    border-radius: var(--radius);
-    overflow: hidden;
-}
-
-.fullPost>.post {
-    border-bottom: none;
-    margin-bottom: 46px;
-}
-
-.formComment>.textarea {
-    padding-top: 13px;
-    height: 150px;
-    resize: none;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 150%;
-}
-
-.formComment>.btn-container {
-    padding: 20px;
-}
-
-.formComment>.btn-container>button {
-    width: 300px;
-}
-
-.com {
-    padding: 24px 0;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.com:last-child {
-    border-bottom: 1px solid transparent;
-}
-
-.com>.name {
-    padding-bottom: 16px;
-}
-
-.com>.name>span {
-    color: rgba(69, 122, 191, 0.3);
-}
-
-.comment {
-    padding: 0 24px;
 }
