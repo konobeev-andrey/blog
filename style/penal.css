@@ -24,3 +24,10 @@
 .panel-search__block_input{
     border-bottom: none;
 }
+
+@media screen and (max-width: 659px) {
+    .penal{
+        height: 164px;
+        grid-template-columns: 1fr;
+    }
+}
