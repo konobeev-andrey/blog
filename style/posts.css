@@ -101,7 +101,7 @@ main {
 }
 
 .formComment>.btn-container>button {
-    width: 300px;
+    max-width: 300px;
 }
 
 .comment {

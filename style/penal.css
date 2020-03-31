@@ -13,7 +13,7 @@
     height: 100%;
     padding: 0 24px;
     display: grid;
-    grid-template-columns: 9fr 1fr;
+    grid-template-columns: 8fr 2fr;
     align-items: center;
     border-right: 1px solid var(--color-border);
 }
@@ -29,5 +29,8 @@
     .penal{
         height: 164px;
         grid-template-columns: 1fr;
+    }
+    .penal > .panel-search__block{
+        border-right: none;
     }
 }

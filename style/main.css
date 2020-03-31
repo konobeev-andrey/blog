@@ -26,7 +26,6 @@
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     outline: none;
-    box-sizing: padding-box;
 }
 
 *::selection {
@@ -35,14 +34,14 @@
 }
 
 body {
-    min-width: 360px;
+    min-width: 320px;
     background: var(--color-background);
 }
 
 header {
     height: 146px;
     font-weight: 300;
-    font-size: 36px;
+    font-size: 34px;
     grid-column: 1 / -1;
     display: grid;
     align-items: center;

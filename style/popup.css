@@ -37,7 +37,7 @@
 
 .popup__wrapper>.button__wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 140px);
+    grid-template-columns: repeat(2, minmax( 100px, 140px));
     column-gap: 24px;
     padding: 24px;
     justify-self: right;

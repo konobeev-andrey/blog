@@ -6,7 +6,8 @@
     background: transparent;
     border: 1px solid black;
     border-radius: var(--radius);
-    padding: 0 34px;
+    padding: 0;
+    box-sizing: content-box;
 } 
 
 .btn:hover{
