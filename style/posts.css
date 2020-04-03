@@ -32,7 +32,7 @@ main {
 }
 
 
-.postsFound {
+.postNotFound {
     padding: 26px 22px;
     border-radius: var(--radius);
     color: var(--color-blue-deep);

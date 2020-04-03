@@ -101,8 +101,8 @@ const view = {
             <p><img src="5.svg" alt=""></p>
             </div>`);
     },
-    postsFound: function(location) {
-        location.insertAdjacentHTML('afterbegin', `  <div class="postsFound" id="postsFound">
+    postNotFound: function(location) {
+        location.insertAdjacentHTML('afterbegin', `  <div class="postNotFound" id="postNotFound">
             <p class="post__subtitle">
                 Статей не найдено!
             </p>

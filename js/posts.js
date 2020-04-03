@@ -61,8 +61,8 @@ function searchPosts() {
         });
     }
     if (!postsFound && val !== '') {
-        if(!$('#postsFound')) view.postsFound(constant.main);
+        if(!$('#postNotFound')) view.postNotFound(constant.main);
     } else {
-        if($('#postsFound')) $('#postsFound').remove();
+        if($('#postNotFound')) $('#postNotFound').remove();
     }
 }
