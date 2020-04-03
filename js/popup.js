@@ -7,6 +7,7 @@ window.onclick = function (e) {
     }
 };
 
+
 $('#addPost').onclick = function (title, bode) {
     let valueTitle = $('.title').value.trim();
     let valueBody = $('.textarea').value.trim();

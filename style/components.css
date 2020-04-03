@@ -68,3 +68,6 @@
 .hide{
     display: none;
 }
+.foundspan{
+    background: var(--color-blue-05);
+}

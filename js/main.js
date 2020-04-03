@@ -57,6 +57,10 @@ function returnLastIndex(arr) {
         return 0;
     }
 }
+function lockScroll(value) {
+    if(value) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'auto';
+};
 
 function deleteValuePopup() {
     $('.title').value = '';
@@ -74,10 +78,11 @@ const popup = {
     open: function() {
         $('.popup.layout').style.display = 'grid';
         $('.title.input').focus();
+        lockScroll(true);
     },
     close: function() {
         $('.popup.layout').style.display = 'none';
-        display.message('');
+        lockScroll(false);
     }
 };
 
