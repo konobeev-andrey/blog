@@ -25,7 +25,17 @@
     border-bottom: none;
     padding-left: 0;
 }
-
+.input-search__wrapper{
+    display: grid;
+    grid-template-columns: 9fr 1px;
+    align-items: center;
+    justify-content: center;
+}
+.label-dagger-search{
+    position: relative;
+    color: #457ABF;
+    left: -45px;
+}
 @media screen and (max-width: 659px) {
     .penal{
         height: 164px;

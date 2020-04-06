@@ -269,3 +269,15 @@ function displayLocalComments(){
         }
     }
 }
+
+$('.label-dagger-search').onclick = function(){
+    let idInput = this.getAttribute('for');
+    let input = $('#' + idInput);
+    input.value = "";
+    this.classList.add('hide');
+
+}
+$('#inputSearch').oninput = function(){
+    if($('#inputSearch').value == "") $('.label-dagger-search').classList.add('hide');
+    else $('.label-dagger-search').classList.remove('hide');
+}
