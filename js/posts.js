@@ -1,3 +1,13 @@
+$('#inputSearch').onkeydown = function (e) {
+    if (e.key === 'Enter') {
+        searchPosts();
+    }
+};
+$('.search__btn').addEventListener("click", searchPosts);
+
+$('.label-dagger-search').addEventListener("click", deleteValueSearch);
+$('#inputSearch').addEventListener("input", daggerSearch);
+
 view.preloader(constant.main);
 
 api.getData(constant.url + 'posts', display.posts);
@@ -32,13 +42,6 @@ function highlightFound (elemId, val){
     highlightElement ($('#idPost' + elemId + ' > .post__subtitle'), val);
 }
 
-
-$('#inputSearch').onkeydown = function (e) {
-    if (e.key === 'Enter') {
-        searchPosts();
-    }
-};
-$('.search__btn').onclick = searchPosts;
 
 function searchPosts() {
     let postsFound = 0;

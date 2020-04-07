@@ -17,7 +17,7 @@ const regexpCheck = [
         regexpValue: /^[0-9]/i
     }
 ];
-function noCorrentComment (arr){
+function noCorrent (arr){
     let error = [];
     for(let i = 0; i < arr.length; i++){
         if(!arr[i].value){
@@ -34,7 +34,7 @@ function noCorrentComment (arr){
         }
     }
     if(error.length > 0 ) {
-        display.message('Введите ' + error.join(', '));
+        // display.message('Введите ' + error.join(', '), false);
         return 'Введите ' + error.join(', ');
     }
     return false
@@ -57,15 +57,6 @@ function returnLastIndex(arr) {
         return 0;
     }
 }
-function lockScroll(value) {
-    if(value) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'auto';
-};
-
-function deleteValuePopup() {
-    $('.title').value = '';
-    $('.textarea').value = '';
-}
 
 function deleteValueComment() {
     $('#nameInComment').value = '';
@@ -78,11 +69,25 @@ const popup = {
     open: function() {
         $('.popup.layout').style.display = 'grid';
         $('.title.input').focus();
-        lockScroll(true);
+        popup.lockScroll(true);
     },
     close: function() {
         $('.popup.layout').style.display = 'none';
-        lockScroll(false);
+        popup.lockScroll(false);
+    },
+    closeClickOut: function (e) {
+        if (e.target === $('.popup')) {
+            $('.popup').style.display = 'none';
+            popup.lockScroll(false)
+        }
+    },
+    lockScroll:function (value) {
+        if(value) document.body.style.overflow = 'hidden';
+        else document.body.style.overflow = 'auto';
+    },
+    deleteValuePopup:function () {
+        $('.title').value = '';
+        $('.textarea').value = '';
     }
 };
 
@@ -92,6 +97,11 @@ const isOpen = {
     },
     close: function(el) {
         $(el).style.display = 'none'
+    },
+    closeMessage:function (e) {
+        if (e.target === $('.message')) {
+            isOpen.close('.message');
+        }
     }
 }
 
@@ -146,7 +156,15 @@ const display = {
     comment: function(email, name, body) {
         view.comment(email, name, body, 'beforeend');
     },
-    message: function(mess) {
+    message: function(mess, corrent) {
+        if(corrent) {
+            if($('.message').classList.contains('no-corrent')) $('.message').classList.remove('no-corrent');
+            $('.message').classList.add('corrent');
+        }
+        else{
+            if($('.message').classList.contains('corrent')) $('.message').classList.remove('corrent');
+            $('.message').classList.add('no-corrent');
+        }
         if (mess) {
          isOpen
         .open('.message');
@@ -181,7 +199,7 @@ const api = {
         }
 
         constant.xhr.onload = function() {
-            deleteValuePopup();
+            popup.deleteValuePopup();
             display.post(id, title, body);
         };
         constant.xhr.send(JSON.stringify(obj));
@@ -270,14 +288,15 @@ function displayLocalComments(){
     }
 }
 
-$('.label-dagger-search').onclick = function(){
+function deleteValueSearch (){
     let idInput = this.getAttribute('for');
     let input = $('#' + idInput);
     input.value = "";
     this.classList.add('hide');
 
 }
-$('#inputSearch').oninput = function(){
+
+function daggerSearch(){
     if($('#inputSearch').value == "") $('.label-dagger-search').classList.add('hide');
     else $('.label-dagger-search').classList.remove('hide');
 }

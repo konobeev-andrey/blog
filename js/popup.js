@@ -1,21 +1,21 @@
-$('.write-post').onclick = popup.open;
-$('.close-popup').onclick = popup.close;
-
-window.onclick = function (e) {
-    if (e.target === $('.popup')) {
-        $('.popup').style.display = 'none';
-    }
-};
+$('.write-post').addEventListener("click", popup.open);
+$('.close-popup').addEventListener("click", popup.close);
 
 
-$('#addPost').onclick = function (title, bode) {
+window.addEventListener("click", popup.closeClickOut);
+
+$('.message').addEventListener("click", isOpen.closeMessage);
+
+$('#addPost').addEventListener("click", addPost);
+
+function  addPost () {
     let valueTitle = $('.title').value.trim();
     let valueBody = $('.textarea').value.trim();
     let valueId = returnLastIndex(constant.respArreyPosts) + 1;
 
-    let strMessage = noCorrentComment([$('.title'),$('.textarea')]);
+    let strMessage = noCorrent([$('.title'),$('.textarea')]);
     if(strMessage){
-        display.message(strMessage);
+        display.message(strMessage, false);
         return
     }
 
@@ -33,4 +33,5 @@ $('#addPost').onclick = function (title, bode) {
             body: valueBody
         }, 'posts');
         popup.close();
+        display.message('Статья сохранена', true);
     }

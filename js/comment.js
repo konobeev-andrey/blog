@@ -4,6 +4,8 @@ function get(variable) {
     return (new URL(document.location.href)).searchParams.get(variable);
 }
 
+$('.message').addEventListener("click", isOpen.closeMessage);
+
 $('.post__title').innerText = get('title');
 $('.post__body').innerText = get('body');
 
@@ -16,7 +18,7 @@ $('#addComment').onclick = function () {
     let valueBody = $('#bodyInComment').value.trim();
     let valueId = +returnLastIndex(constant.respArreyComment) + 1;
 
-    let strMessage = noCorrentComment([$('#nameInComment'),$('#emailInComment'), $('#bodyInComment')]);
+    let strMessage = noCorrent([$('#nameInComment'),$('#emailInComment'), $('#bodyInComment')]);
     if(strMessage){
         display.message(strMessage);
         return
@@ -37,5 +39,6 @@ $('#addComment').onclick = function () {
             email: valueEmail,
             body: valueBody
         },'comments');
+        display.message('Комментарий отправлено', true);
     
 }
