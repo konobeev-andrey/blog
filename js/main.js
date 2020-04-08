@@ -34,7 +34,6 @@ function noCorrent (arr){
         }
     }
     if(error.length > 0 ) {
-        // display.message('Введите ' + error.join(', '), false);
         return 'Введите ' + error.join(', ');
     }
     return false
@@ -135,22 +134,26 @@ const view = {
 
 const display = {
     posts: function(resp) {
+        
         constant.respArreyPosts = resp;
+        local.addRespPosts();
+
         resp.forEach((element) => {
-            view.post(element.id, element.title, element.body, 'beforeend');
+            view.post(element.id, element.title, element.body, 'afterbegin');
         });
         $('.preloader__contener').remove();
-        local.displayPosts();
     },
     post: function(id, title, body) {
         view.post(id, title, body, 'afterbegin');
     },
     comments: function(resp) {
         constant.respArreyComment = resp;
+        local.addRespComments()
+
         resp.forEach((element) => {
             view.comment(element.email, element.name, element.body, 'beforeend');
         });
-        local.displayComments();
+
         $('.preloader__contener').remove();
     },
     comment: function(email, name, body) {
@@ -234,58 +237,25 @@ const local = {
             localStorage.setItem(location,JSON.stringify(localPosts));
         }
     },
-    displayPosts: function (){
+    addRespPosts: function (){
         if (localStorage.getItem('posts') !== null) {
             let localPosts = JSON.parse(localStorage.getItem('posts'));
             for(post of localPosts){
-                view.post(post.id, post.title, post.body, 'afterbegin');
                 constant.respArreyPosts.push(post);
             }
         }
     },
-    displayComments: function (){
+    addRespComments: function (){
         if (localStorage.getItem('comments') !== null) {
             let localComments = JSON.parse(localStorage.getItem('comments'));
             for(comment of localComments){
                 if(comment.postId == idPost){
-                    view.comment(comment.email, comment.name, comment.body, 'beforeend');
                     constant.respArreyComment.push(comment);
                 }
             }
         }
     }
 
-}
-
-function addInlocalStorage (postAdd, location){
-    if (localStorage.getItem(location) === null) {
-        localStorage.setItem(location ,JSON.stringify([postAdd]));
-    }
-    else{
-        let localPosts = JSON.parse(localStorage.getItem(location));
-        localPosts.push(postAdd);
-        localStorage.setItem(location,JSON.stringify(localPosts));
-    }
-}
-function displayLocalPosts(){
-    if (localStorage.getItem('posts') !== null) {
-        let localPosts = JSON.parse(localStorage.getItem('posts'));
-        for(post of localPosts){
-            view.post(post.id, post.title, post.body, 'afterbegin');
-            constant.respArreyPosts.push(post);
-        }
-    }
-}
-function displayLocalComments(){
-    if (localStorage.getItem('comments') !== null) {
-        let localComments = JSON.parse(localStorage.getItem('comments'));
-        for(comment of localComments){
-            if(comment.postId == idPost){
-                view.comment(comment.email, comment.name, comment.body, 'beforeend');
-                constant.respArreyComment.push(comment);
-            }
-        }
-    }
 }
 
 function deleteValueSearch (){

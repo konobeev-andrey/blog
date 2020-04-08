@@ -33,5 +33,5 @@ function  addPost () {
             body: valueBody
         }, 'posts');
         popup.close();
-        display.message('Статья сохранена', true);
+        display.message('Статья добавлена', true);
     }

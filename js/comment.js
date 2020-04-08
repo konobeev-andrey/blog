@@ -4,6 +4,7 @@ function get(variable) {
     return (new URL(document.location.href)).searchParams.get(variable);
 }
 
+$('#addComment').addEventListener("click", addComment);
 $('.message').addEventListener("click", isOpen.closeMessage);
 
 $('.post__title').innerText = get('title');
@@ -12,13 +13,13 @@ $('.post__body').innerText = get('body');
 
 api.getData(constant.url + `comments?postId=${idPost}`, display.comments);
 
-$('#addComment').onclick = function () {
+function addComment () {
     let valueName = $('#nameInComment').value.trim();
     let valueEmail = $('#emailInComment').value.trim();
     let valueBody = $('#bodyInComment').value.trim();
     let valueId = +returnLastIndex(constant.respArreyComment) + 1;
 
-    let strMessage = noCorrent([$('#nameInComment'),$('#emailInComment'), $('#bodyInComment')]);
+    let strMessage = noCorrent ([$('#nameInComment'),$('#emailInComment'), $('#bodyInComment')]);
     if(strMessage){
         display.message(strMessage);
         return
